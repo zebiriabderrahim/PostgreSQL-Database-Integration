@@ -1,0 +1,23 @@
+<div>
+  <nav class="navbar navbar-dark bg-dark main-nav">
+    <button mat-fab color="warn" aria-label="Example icon button with a home icon" routerLink="/" >
+      <mat-icon>home</mat-icon>
+    </button>
+    <div class="navbar-expand mr-auto">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" routerLink="/ajouter">Ajouter un plan</a>
+        <a class="nav-item nav-link active" routerLink="/modifier">Modifier un plan </a>
+        <a class="nav-item nav-link active" routerLink="/supprimer">Supprimer un plan</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="home" *ngIf="route == ''">
+    <p>
+      Bienvenue au TP4 !
+    </p>
+    <button mat-raised-button color="primary" class="btn" routerLink="/plansRepas">les plan repas disponibles...<mat-icon>arrow_right</mat-icon></button>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>

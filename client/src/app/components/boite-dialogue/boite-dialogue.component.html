@@ -1,0 +1,77 @@
+<h1  *ngIf="!this.data.planRepas" mat-dialog-title>Ajouter un nouveau plan repas</h1>
+<h1  *ngIf="this.data.planRepas" mat-dialog-title >Modifier un plan repas</h1>
+<form id="form" [formGroup]="ajoutForm" novalidate>
+    <mat-form-field appearance="outline">
+        <mat-label>Categorie du plan</mat-label>
+        <input matInput type="text" maxlength="20" [(ngModel)]="planRepas.categorie" formControlName='controlCategorie' />
+        <button *ngIf="planRepas.categorie" matSuffix mat-icon-button aria-label="Clear" (click)="planRepas.categorie = ''">
+            <mat-icon>close</mat-icon>
+        </button>
+        <mat-hint align="end"> {{ planRepas.categorie.length || 0 }} / 20</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Frequence du plan repas</mat-label>
+        <input matInput type="number" [(ngModel)]="planRepas.frequence" formControlName='controlFrequence' />
+        <mat-error *ngIf="ajoutForm.controls.controlFrequence.errors?.min" [ngClass]="'error'"> La frequence doit
+            etre strictement positive.</mat-error>
+        <mat-error *ngIf="ajoutForm.controls.controlFrequence.errors?.pattern" [ngClass]="'error'"> La frequence
+            doit etre un nombre entier.</mat-error>
+        <button *ngIf="planRepas.frequence" matSuffix mat-icon-button aria-label="Clear" (click)="planRepas.frequence = ''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+        <mat-label>Nombre de personnes.....</mat-label>
+        <input matInput type='number' [(ngModel)]="planRepas.nbrpersonnes" formControlName='controlNbrPersonnes' />
+        <mat-error *ngIf="ajoutForm.controls.controlNbrPersonnes.errors?.min" [ngClass]="'error'"> Le nombre de
+            personnes doit etre strictement positive.</mat-error>
+        <mat-error *ngIf="ajoutForm.controls.controlNbrPersonnes.errors?.pattern" [ngClass]="'error'"> Le nombre de
+            personnes doit etre un nombre entier.</mat-error>
+        <button *ngIf="planRepas.nbrpersonnes" matSuffix mat-icon-button aria-label="Clear" (click)="planRepas.nbrpersonnes = ''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field> 
+
+    <mat-form-field appearance="outline">
+        <mat-label>Nombre de calories</mat-label>
+        <input matInput type='number' [(ngModel)]="planRepas.nbrcalories" formControlName='controlNbrCalories' />
+        <mat-error *ngIf="ajoutForm.controls.controlNbrCalories.errors?.min" [ngClass]="'error'"> Le nombre de
+            calories doit etre strictement positive.</mat-error>
+        <mat-error *ngIf="ajoutForm.controls.controlNbrCalories.errors?.pattern" [ngClass]="'error'"> Le nombre de
+            calories doit etre un nombre entier.</mat-error>
+        <button *ngIf="planRepas.nbrcalories" matSuffix mat-icon-button aria-label="Clear" (click)="planRepas.nbrcalories = ''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Prix du plan</mat-label>
+        <input matInput type='number' [(ngModel)]="planRepas.prix" formControlName='controlPrix' />
+        <mat-error *ngIf="ajoutForm.controls.controlPrix.errors?.pattern" [ngClass]="'error'"> Le prix doit avoir 2
+            chiffres apres la virgule</mat-error>
+        <mat-error *ngIf="ajoutForm.controls.controlPrix.errors?.min" [ngClass]="'error'"> Le prix doit avoir une
+            valeur superieure a 0.01 .</mat-error>
+        <button *ngIf="planRepas.prix" matSuffix mat-icon-button aria-label="Clear" (click)="planRepas.prix = ''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Numero du fournisseur</mat-label>
+        <mat-select type='number'  [(value)]="planRepas.numerofournisseur" >
+            <mat-option selected>aucun</mat-option>
+            <mat-option *ngFor="let fournisseur of listeFournisseurs" [value]="fournisseur">
+                {{fournisseur}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>
+<div id="button-area" mat-dialog-actions>
+    <button mat-raised-button color="warn" mat-dialog-close>Fermer</button>
+    <button *ngIf="!this.data.planRepas"  [disabled]="!ajoutForm.valid" mat-raised-button color="primary" (click)="ajouterPlansRepas()">Ajouter</button>
+    <button *ngIf="this.data.planRepas" [disabled]="!ajoutForm.valid" mat-raised-button color="primary"
+        (click)="modifierPlanRepas()">Modifier</button>
+</div>
