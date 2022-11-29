@@ -31,16 +31,16 @@ export class DatabaseService {
     return result;
   }
 
-  public async ajouterPlanRepas(mealPlan: PlanRepas): Promise<void> {
+  public async ajouterPlanRepas(planRepas: PlanRepas): Promise<void> {
     const client = await this.pool.connect();
 
     const values: (string | number)[] = [
-      mealPlan.categorie,
-      mealPlan.frequence,
-      mealPlan.nbrpersonnes,
-      mealPlan.nbrcalories,
-      mealPlan.prix,
-      mealPlan.numerofournisseur,
+      planRepas.categorie,
+      planRepas.frequence,
+      planRepas.nbrpersonnes,
+      planRepas.nbrcalories,
+      planRepas.prix,
+      planRepas.numerofournisseur,
     ];
     const queryText: string = `INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES($1, $2, $3, $4, $5, $6);`;
     await client.query(queryText, values);
@@ -48,17 +48,17 @@ export class DatabaseService {
   }
 
 
-  public async modifierPlanRepas(plan: PlanRepas): Promise<pg.QueryResult> {
+  public async modifierPlanRepas(planRepas: PlanRepas): Promise<pg.QueryResult> {
     const client = await this.pool.connect();
     
     const values: (string | number)[] = [
-      plan.numeroplan,
-      plan.categorie,
-      plan.frequence,
-      plan.nbrpersonnes,
-      plan.nbrcalories,
-      plan.prix,
-      plan.numerofournisseur,
+      planRepas.numeroplan,
+      planRepas.categorie,
+      planRepas.frequence,
+      planRepas.nbrpersonnes,
+      planRepas.nbrcalories,
+      planRepas.prix,
+      planRepas.numerofournisseur,
     ];
     
     const queryText: string = `UPDATE Planrepas SET categorie = $2, frequence = $3, nbrpersonnes = $4, nbrcalories = $5, prix = $6, numerofournisseur = $7 WHERE numeroplan = $1;`;

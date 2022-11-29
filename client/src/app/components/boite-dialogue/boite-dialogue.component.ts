@@ -38,7 +38,17 @@ export class BoiteDialogueComponent {
 
   
   modifierPlanRepas() : void {
-    this.communicationService.modifierPlanRepas(this.planRepas).subscribe();
+    const newMealPlan: PlanRepas = {
+      numeroplan: this.data.nbrMealPlans,
+      categorie: this.planRepas.categorie,
+      frequence: this.planRepas.frequence,
+      nbrpersonnes: this.planRepas.nbrpersonnes,
+      nbrcalories: this.planRepas.nbrcalories,
+      prix: this.planRepas.prix,
+      numerofournisseur: this.planRepas.numerofournisseur,
+    }
+    
+    this.communicationService.modifierPlanRepas(newMealPlan).subscribe();
     this.dialogRef.close();
   }
 }
