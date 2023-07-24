@@ -8,7 +8,7 @@ export class DatabaseService {
   public connectionConfig: pg.ConnectionConfig = {
     user: "postgres",
     database: "TP4_Livraison",
-    password: "230506",
+    password: "00000",
     port: 5432,          // Attention ! Peut aussi être 5433 pour certains utilisateurs
     host: "127.0.0.1",
     keepAlive: true
