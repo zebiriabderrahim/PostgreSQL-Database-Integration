@@ -63,7 +63,7 @@
     "ps-tree": "^1.2.0",
     "reflect-metadata": "^0.1.13",
     "serve-favicon": "^2.5.0",
-    "socket.io": "^4.5.2",
+    "socket.io": "^4.7.5",
     "typedi": "^0.10.0"
   },
   "devDependencies": {
